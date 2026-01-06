@@ -1,0 +1,25 @@
+name: devlens
+description: A smart Flutter dev tool that automatically detects and displays network data associated with any widget. Just hold the mouse wheel and hover - no wrapper widgets needed.
+version: 1.0.0
+homepage: https://github.com/Radhwen1999/devlens
+repository: https://github.com/Radhwen1999/devlens
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dio: ^5.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+platforms:
+  linux:
+  macos:
+  windows:
+  web:
