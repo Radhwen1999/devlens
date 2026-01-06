@@ -9,9 +9,10 @@
 ///   runApp(DevLensOverlay(child: MyApp()));
 /// }
 /// ```
-library devlens;
+library;
 
 export 'src/devlens.dart';
 export 'src/devlens_overlay.dart';
 export 'src/interceptors/devlens_dio_interceptor.dart';
+export 'src/interceptors/devlens_http_client.dart';
 export 'src/config/devlens_config.dart';
