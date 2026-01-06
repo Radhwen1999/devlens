@@ -1,39 +1,60 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# DevLens
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+Smart network inspector for Flutter Desktop & Web. Hold mouse wheel, hover over any widget, see its data.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+## Install
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+```yaml
+dev_dependencies:
+  devlens: ^1.0.0
+```
 
-## Features
+## Setup
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+```dart
+import 'package:devlens/devlens.dart';
 
-## Getting started
+void main() {
+  DevLens.init();
+  runApp(DevLensOverlay(child: MyApp()));
+}
+```
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add interceptor:
+
+```dart
+// Dio
+dio.interceptors.add(DevLensDioInterceptor());
+
+// HTTP
+final client = DevLensHttpClient();
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+1. Hold **mouse wheel button**
+2. Hover over any widget
+3. See network data with matched field highlighted
+
+No wrapper widgets needed. DevLens automatically detects which API response contains the displayed data.
+
+## Configuration
 
 ```dart
-const like = 'sample';
+DevLensOverlay(
+  enabled: kDebugMode,
+  config: DevLensConfig(
+    maxRequests: 200,
+    theme: DevLensTheme.light, // or DevLensTheme() for dark
+  ),
+  child: MyApp(),
+)
 ```
 
-## Additional information
+## Platforms
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+Desktop (macOS, Windows, Linux) and Web only.
+
+## License
+
+MIT
