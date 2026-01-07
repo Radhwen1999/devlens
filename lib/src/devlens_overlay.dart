@@ -181,35 +181,34 @@ class _DevLensOverlayState extends State<DevLensOverlay> {
       onPointerMove: _handlePointerMove,
       onPointerHover: _handlePointerHover,
       behavior: HitTestBehavior.translucent,
-      child: Directionality(
+      child: Stack(
+        alignment: Alignment.topLeft,
         textDirection: TextDirection.ltr,
-        child: Stack(
-          children: [
-            widget.child,
+        children: [
+          widget.child,
 
-            // Highlight overlay for hovered element
-            if (_isInspecting && _hoveredBounds != null)
-              Positioned.fill(
-                child: IgnorePointer(
-                  child: CustomPaint(
-                    painter: _HighlightPainter(
-                      bounds: _hoveredBounds!,
-                      color: widget.config.theme.accent,
-                    ),
+          // Highlight overlay for hovered element
+          if (_isInspecting && _hoveredBounds != null)
+            Positioned.fill(
+              child: IgnorePointer(
+                child: CustomPaint(
+                  painter: _HighlightPainter(
+                    bounds: _hoveredBounds!,
+                    color: widget.config.theme.accent,
                   ),
                 ),
               ),
+            ),
 
-            // Floating panel
-            if (_isInspecting && _detectionResult != null)
-              DevLensFloatingPanel(
-                position: _cursorPosition,
-                detectionResult: _detectionResult!,
-                detectedText: _detectedText,
-                theme: widget.config.theme,
-              ),
-          ],
-        ),
+          // Floating panel
+          if (_isInspecting && _detectionResult != null)
+            DevLensFloatingPanel(
+              position: _cursorPosition,
+              detectionResult: _detectionResult!,
+              detectedText: _detectedText,
+              theme: widget.config.theme,
+            ),
+        ],
       ),
     );
   }
